@@ -1,0 +1,30 @@
+<%= form_with(model: @task) do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :name, style: "display: block", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+    <div style="color: red">
+      <% if @task.errors.include?(:name) %>
+          <% @task.errors.full_messages_for(:name).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, style: "display: block", class: "form-label" %>
+    <%= form.text_area :content, class: "form-control" %>
+    <div style="color: red">
+      <% if @task.errors.include?(:content) %>
+          <% @task.errors.full_messages_for(:content).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Save", class: "btn btn-success btn-block" %>
+  </div>
+<% end %>
