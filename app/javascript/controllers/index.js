@@ -6,6 +6,18 @@ import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 
-// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
-// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
-// lazyLoadControllersFrom("controllers", application)
+// Probably in app/javascript/controllers/index.js
+import { Application } from '@hotwired/stimulus'
+
+// import HelloController from "./controllers/hello_controller"
+import CharacterCounter from 'stimulus-character-counter'
+
+window.Stimulus = Application.start()
+
+// Stimulus.register("hello", HelloController)
+Stimulus.register('character-counter', CharacterCounter)
+
+import Popover from 'stimulus-popover'
+
+const application = Application.start()
+application.register('popover', Popover)

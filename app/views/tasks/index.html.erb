@@ -21,6 +21,9 @@
           </td>
           <td style="width: 25%">
             <%= task.content %>
+            <div data-controller="popover" data-popover-url-value="<%= card_path %>">You can load popover with AJAX. For instance, this is my
+              <a href="/tasks" data-action="mouseenter->popover#show mouseleave->popover#hide">profile card</a>
+            </div>
           </td>
           <td style="width: 15%">
             <%= task.deadline %>
