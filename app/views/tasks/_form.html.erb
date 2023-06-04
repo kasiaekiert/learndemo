@@ -25,6 +25,30 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :deadline, style: "display: block", class: "form-label" %>
+    <%= form.date_field :deadline, class: "form-control" %>
+    <div style="color: red">
+      <% if @task.errors.include?(:deadline) %>
+          <% @task.errors.full_messages_for(:deadline).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :done, style: "display: block", class: "form-label" %>
+    <%= form.check_box :done, class: "form-control" %>
+    <div style="color: red">
+      <% if @task.errors.include?(:done) %>
+          <% @task.errors.full_messages_for(:done).each do |error_message| %>
+            <%= error_message %>.
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
     <%= form.submit "Save", class: "btn btn-success btn-block" %>
   </div>
 <% end %>

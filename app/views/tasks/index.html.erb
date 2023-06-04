@@ -8,17 +8,25 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Content</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Done?</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
         <tr scope="row">
-          <td style="width: 25%">
+          <td style="width: 15%">
             <%= task.name %>
           </td>
-          <td style="width: 50%">
+          <td style="width: 25%">
             <%= task.content %>
+          </td>
+          <td style="width: 15%">
+            <%= task.deadline %>
+          </td>
+          <td style="width: 10%">
+            <%= task.done %>
           </td>
           <td style="width: 25%">
             <%= link_to "Show", task, class: "btn btn-secondary" %>
