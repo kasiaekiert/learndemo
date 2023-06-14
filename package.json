@@ -1,6 +1,3 @@
 {
-  "dependencies": {
-    "stimulus-character-counter": "^4.2.0",
-    "stimulus-popover": "^6.2.0"
-  }
+  "dependencies": {}
 }
