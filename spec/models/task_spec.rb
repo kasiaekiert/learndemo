@@ -7,7 +7,7 @@ RSpec.describe Task, type: :model do
     task = Task.new(
       name: 'Test task',
       content: 'Test content',
-      deadline: Date.today + 1.day
+      deadline: Date.current + 1.day
     )
     expect(task).to be_valid
   end
@@ -25,7 +25,7 @@ RSpec.describe Task, type: :model do
   end
 
   it 'is invalid with a deadline in the past' do
-    task = Task.new(deadline: Date.today - 1.day)
+    task = Task.new(deadline: Date.current - 1.day)
     task.valid?
     expect(task.errors[:deadline]).to include("can't be in the past")
   end
