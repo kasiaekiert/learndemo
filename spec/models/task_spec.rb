@@ -3,12 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  let(:task) { FactoryBot.create(:task) }
+
   it 'is valid with name, content and deadline' do
-    task = Task.new(
-      name: 'Test task',
-      content: 'Test content',
-      deadline: Date.current + 1.day
-    )
     expect(task).to be_valid
   end
 
