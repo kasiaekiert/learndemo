@@ -59,6 +59,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
   gem 'rubocop-rspec', require: false
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'pry-rails'
 end
 
 group :development do
