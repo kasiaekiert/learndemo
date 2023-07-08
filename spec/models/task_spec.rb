@@ -63,10 +63,11 @@ RSpec.describe Task, type: :model do
       expect(task.done).to be false
     end
   end
+
+  context 'When task is created' do
+    it "should validate a presence of name and content" do
+      should validate_presence_of(:name)
+      should validate_presence_of(:content)
+    end
+  end
 end
-
-# context 'validations' do
-#   should validate_presence_of(:name)
-#   should validate_presence_of(:content)
-# end
-
