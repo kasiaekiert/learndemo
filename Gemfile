@@ -7,6 +7,7 @@ ruby '3.0.1'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
+gem 'rubocop-rails', require: false
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
@@ -58,7 +59,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
-  gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers', '~> 5.0'
   gem 'pry-rails'
 end
