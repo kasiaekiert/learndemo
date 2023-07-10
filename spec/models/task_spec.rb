@@ -47,7 +47,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "When task is undone" do
-    let(:task) { create(:task, done: false) }
+    let(:task) { create(:task) }
 
     it "can be updated to done" do
       task.update!(done: true)
@@ -60,6 +60,14 @@ RSpec.describe Task, type: :model do
 
     it "can be updated to undone" do
       task.update!(done: false)
+      expect(task.done).to be false
+    end
+  end
+
+  context "When task is created" do
+    let(:task) { create(:task) }
+
+    it "is undone by default" do
       expect(task.done).to be false
     end
   end
