@@ -20,14 +20,12 @@
             <%= task.name %>
           </td>
           <td style="width: 25%">
-            <%= task.content %>
             <div data-controller="popover">
-              This is my Github card available on
-              <p data-action="mouseenter->popover#show mouseleave->popover#hide"> Github </p>
-
+              <%= truncate(task.content, length: 50, omission: "...", escape: false) %>
+              <p data-action="mouseenter->popover#show mouseleave->popover#hide">Get more info, click here! </p>
               <template data-popover-target="content">
                 <div data-popover-target="card">
-                  <p>This content is in a hidden template.</p>
+                  <p><%= task.content %></p>
                 </div>
               </template>
             </div>
