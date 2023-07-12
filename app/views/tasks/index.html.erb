@@ -20,7 +20,15 @@
             <%= task.name %>
           </td>
           <td style="width: 25%">
-            <%= task.content %>
+            <div data-controller="popover">
+              <%= truncate(task.content, length: 50, omission: "...", escape: false) %>
+              <p data-action="mouseenter->popover#show mouseleave->popover#hide">Get more info, click here! </p>
+              <template data-popover-target="content">
+                <div data-popover-target="card">
+                  <p><%= task.content %></p>
+                </div>
+              </template>
+            </div>
           </td>
           <td style="width: 15%">
             <%= task.deadline %>

@@ -8,6 +8,10 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def card
+    render partial: 'tasks/card', locals: { task: @task }
+  end
+
   # GET /tasks/1 or /tasks/1.json
   def show; end
 
