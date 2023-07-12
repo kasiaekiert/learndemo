@@ -13,6 +13,8 @@
   <body>
     <div class="container">
     <div class="row">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
       <%= turbo_frame_tag "remote_modal", target: "_top" %>
     </div>
