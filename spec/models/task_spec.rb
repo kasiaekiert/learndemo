@@ -64,7 +64,7 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  context "When task is created" do
+  context "When task is created is defaulted" do
     let(:task) { create(:task) }
 
     it "is undone by default" do
@@ -72,7 +72,7 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  context 'When task is created' do
+  context 'When task is creating is validated' do
     it "should validate a presence of name and content" do
       should validate_presence_of(:name)
       should validate_presence_of(:content)
