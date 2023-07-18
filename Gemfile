@@ -8,6 +8,7 @@ gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
 gem 'rubocop-rails', require: false
+gem "pagy"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
