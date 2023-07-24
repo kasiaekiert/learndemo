@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @pagy, @tasks = pagy(Task.all, items: 10)
   end
 
   def card
