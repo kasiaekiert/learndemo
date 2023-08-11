@@ -3,6 +3,7 @@
 class Task < ApplicationRecord
   validates_presence_of :name, :content
   validate :deadline_cannot_be_in_the_past
+  belongs_to :user
 
   def deadline_cannot_be_in_the_past
     return unless deadline.present? && deadline < Date.today
