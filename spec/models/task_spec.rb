@@ -5,14 +5,20 @@ require "factory_bot_rails"
 require "pry"
 
 RSpec.describe Task, type: :model do
-  let(:task) { create(:task) }
+  let(:user) { create(:user) }
+
+  before do
+    login_as(user, scope: :user)
+  end
+
+  let(:task) { create(:task, user: user) }
 
   it "is valid with name, content and deadline" do
     expect(task).to be_valid
   end
 
   context "Create a task without a name" do
-    let(:task) { build(:task, name: nil) }
+    let(:task) { build(:task, name: nil, user: user) }
 
     it "is invalid without a name" do
       expect(task.valid?).to be(false)
@@ -21,7 +27,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "Create a task without a content" do
-    let(:task) { build(:task, content: nil) }
+    let(:task) { build(:task, content: nil, user: user) }
 
     it "is invalid without a content" do
       task.valid?
@@ -30,7 +36,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "Create a task with deadline in the past" do
-    let(:task) { build(:task, deadline: Date.current - 1.day) }
+    let(:task) { build(:task, deadline: Date.current - 1.day, user: user) }
 
     it "is invalid with a deadline in the past" do
       task.valid?
@@ -39,7 +45,7 @@ RSpec.describe Task, type: :model do
   end 
 
   context "Create a task with deadline is today" do 
-    let(:task) { build(:task, deadline: Date.current) }
+    let(:task) { build(:task, deadline: Date.current, user: user) }
 
     it "is with a deadline today" do
       expect(task.valid?).to be(true)
@@ -47,7 +53,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "When task is undone" do
-    let(:task) { create(:task) }
+    let(:task) { create(:task, user: user) }
 
     it "can be updated to done" do
       task.update!(done: true)
@@ -56,7 +62,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "When task is done" do
-    let(:task) { create(:task, done: true) }
+    let(:task) { create(:task, done: true, user: user) }
 
     it "can be updated to undone" do
       task.update!(done: false)
@@ -65,7 +71,7 @@ RSpec.describe Task, type: :model do
   end
 
   context "When task is created is defaulted" do
-    let(:task) { create(:task) }
+    let(:task) { create(:task, user: user) }
 
     it "is undone by default" do
       expect(task.done).to be false
