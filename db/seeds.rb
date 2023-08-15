@@ -9,9 +9,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 1.upto(15) do |i|
-  Task.where(name: "Task#{i}").first_or_create! do |task|
-    task.content = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'
-    task.deadline = Date.today + 3.days
-    task.done = false
-  end
+  user = User.create!(email: "user#{i}@user.com", password: "password")
+  user.tasks.create!(name: "Task for user number#{i}", content: "Tasks tasks")
 end
