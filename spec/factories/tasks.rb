@@ -6,5 +6,6 @@ FactoryBot.define do
     content { 'Test content' }
     deadline { Date.current + 1.day }
     done { false }
+    user { create(:user) }
   end
 end
