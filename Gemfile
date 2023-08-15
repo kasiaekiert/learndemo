@@ -10,6 +10,7 @@ gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
 gem 'rubocop-rails', require: false
 gem "pagy"
+gem 'annotate'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
