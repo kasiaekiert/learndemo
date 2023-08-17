@@ -144,7 +144,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
+    minitest (5.19.0)
     msgpack (1.7.1)
     net-imap (0.3.4)
       date
@@ -325,10 +325,12 @@ DEPENDENCIES
   factory_bot_rails
   importmap-rails
   jbuilder
+  minitest (~> 5.19.0)
   pagy
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.5)
+  rake (~> 13.0.6)
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
   rubocop
