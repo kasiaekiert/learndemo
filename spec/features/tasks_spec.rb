@@ -6,52 +6,60 @@ require "pry"
 
 RSpec.describe 'Tasks' do
   let!(:user) { create(:user) }
+  let!(:user1) { create(:user) }
 
   before do
     login_as user
   end
 
-  it 'Add task as logged user' do
-    visit('/')
-    click_link 'New task'
-    expect(page).to have_selector('.modal', text: 'New item')
+  describe 'User may add task which are visible only for him' do
+    it 'Add task as logged user' do
+      visit root_path
+      click_link 'New task'
+      expect(page).to have_selector('.modal', text: 'New item')
 
-    fill_in 'Name', with: 'Name of a task'
-    fill_in 'Content', with: 'Task content for user 1'
-    click_button 'Save'
-    expect(page).to have_content 'Task was successfully created.'
+      fill_in 'Name', with: 'Name of a task'
+      fill_in 'Content', with: 'Task content for user 1'
+      click_button 'Save'
+      expect(page).to have_content 'Task was successfully created.'
+      expect(page).to have_content 'Task content for user 1'
+    # end
 
-    visit('/')
-    expect(page).to have_content 'Task content for user 1'
+    # it 'Delete and update task as logged user' do
+      visit('/')
+      click_link 'Show'
+      click_link 'Edit this task'
+      fill_in 'Name', with: 'Task title 123'
+      click_button 'Save'
 
-    # visit('/')
-    # click_link 'Kudos'
-    # click_link 'Edit this Kudo'
-    # fill_in 'Title', with: 'Kudo title 123'
-    # click_button 'Update Kudo'
+      expect(page).to have_content 'Task was successfully updated.'
 
-    # expect(page).to have_content 'Kudo was successfully updated.'
+      visit root_path
+      click_link 'Edit'
+      fill_in 'Content', with: 'Writing content 1233'
+      click_button 'Save'
+      expect(page).to have_content 'Task was successfully updated.'
+      expect(page).to have_content 'Writing content 1233'
 
-    # visit('/')
-    # click_link 'Kudos'
-    # click_link 'Edit this Kudo'
-    # select company_value.title, from: 'kudo_company_value_id'
-    # click_button 'Update Kudo'
+      click_link 'Delete'
+      expect(page).to have_content 'Task was successfully destroyed.'
+    end
+    
+    context 'displays tasks for the specific user' do
+      before do
+        login_as user1
+      end
 
-    # expect(page).to have_content 'Kudo was successfully updated.'
+      it 'is visible for specific user' do 
+        visit root_path 
+        expect(page).not_to have_content 'Task content for user 1'
 
-    # visit('/')
-    # click_link 'Kudos'
-    # click_link 'Destroy this kudo'
-    # expect(page).to have_content 'Kudo was successfully destroyed.'
+        logout 
+        login_as user
 
-    # # can not see link to delete kudo after 5 minutes
-
-    # visit('/')
-    # click_link 'Kudos'
-    # expect(page).not_to have_link 'Destroy this kudo'
-  end
-
-  it 'displays tasks for the specific user' do
+        visit root_path
+        expect(page).not_to have_content 'Task content for user 1'
+      end
+    end
   end
 end

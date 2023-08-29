@@ -13,18 +13,14 @@ class TasksController < ApplicationController
     render partial: 'tasks/card', locals: { task: @task }
   end
 
-  # GET /tasks/1 or /tasks/1.json
   def show; end
 
-  # GET /tasks/new
   def new
     @task = current_user.tasks.build
   end
 
-  # GET /tasks/1/edit
   def edit; end
 
-  # POST /tasks or /tasks.json
   def create
     @task = current_user.tasks.new(task_params)
 
@@ -56,12 +52,18 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    @task.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+    # binding.pry
+    if @task.destroy!
+      redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    else
+      redirect_to tasks_url, alert: 'Error occurred while deleting the task.'
     end
+    # @task.destroy!
+
+    # respond_to do |format|
+    #   format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

@@ -34,14 +34,14 @@
             </div>
           </td>
           <td style="width: 15%">
-            <%= task.deadline %>
+            deadline:<%= task.deadline %>
           </td>
           <td style="width: 10%">
             <%= task.done ? "done!" : "TO DO" %>
           </td>
           <td style="width: 25%">
-            <%= link_to "Show", task, class: "btn btn-secondary" %>
-            <%= link_to "Delete", task, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+            <%= link_to "Show", task_path(task), class: "btn btn-secondary" %>
+            <%= link_to "Delete", task_path(task), class: "btn btn-danger", data: { turbo_method: :delete } %>
             <%= link_to "Edit", edit_task_path(task), class: "btn btn-success btn-block", data: { turbo_frame: "remote_modal" } %>
           </td>
         </tr>

@@ -21,4 +21,12 @@ FactoryBot.define do
     done { false }
     user { create(:user) }
   end
+
+  factory :task1 do
+    name { 'Task for user 1' }
+    content { 'Test content' }
+    deadline { Date.current + 1.day }
+    done { false }
+    user { create(:user1) }
+  end
 end
