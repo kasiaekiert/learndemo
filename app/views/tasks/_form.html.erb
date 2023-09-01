@@ -36,9 +36,11 @@
     </div>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :done, style: "display: block", class: "form-label" %>
-    <%= form.check_box :done, class: "form-check-control" %>
+    <div class="mb-3">
+      <%= form.label :done, style: "display: block", class: "form-label" %>
+      <%= form.check_box :done %>
+    </div>
+    
     <div style="color: red">
       <% if @task.errors.include?(:done) %>
           <% @task.errors.full_messages_for(:done).each do |error_message| %>

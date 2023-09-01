@@ -38,7 +38,7 @@
             </div>
           </td>
           <td style="width: 15%">
-            <%= task.deadline %>
+            <%= task.deadline.strftime("%Y-%m-%d") if task.deadline.present? %>
           </td>
           <td style="width: 10%">
             <%= task.done ? "done!" : "TO DO" %>
