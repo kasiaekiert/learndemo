@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy toggle]
   before_action :authenticate_user!
-  # authorize_resource
+  before_action :set_task, only: %i[show edit update destroy toggle]
+  load_and_authorize_resource
 
   def index
     @pagy, @tasks = pagy(current_user.tasks.all, items: 10)
-    # authorize! :index
   end
 
   def card
