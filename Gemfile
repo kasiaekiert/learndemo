@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
+gem 'cancancan'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'rubocop', require: false

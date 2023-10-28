@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy toggle]
   before_action :authenticate_user!
+  before_action :set_task, only: %i[show edit update destroy toggle]
+  load_and_authorize_resource
 
   def index
     @pagy, @tasks = pagy(current_user.tasks.all, items: 10)
@@ -49,11 +50,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+    # binding.pry
+    if @task.destroy!
+      redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    else
+      redirect_to tasks_url, alert: 'Error occurred while deleting the task.'
     end
   end
 
