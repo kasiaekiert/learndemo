@@ -10,11 +10,12 @@
       </div>
 
       <div class="navbar-nav">
+      <%= link_to "Friends", friends_path, class: 'nav-link' %>
         <% if user_signed_in? %>
           <%= link_to "Sign Out", sign_out_path, class: 'nav-link' %>
         <% else %>
           <%= link_to 'Log in', new_user_session_path, class: 'nav-link' %>
-        <% end%>
+        <% end %>
       </div>
     </div>
   </div>
