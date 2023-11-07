@@ -14,4 +14,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'tasks#index'
+
+  resources :friends, only: %i[index show]
+  resources :invitations, only: %i[create]
 end
