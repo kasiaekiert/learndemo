@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_30_114024) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_05_120342) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -24,6 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_114024) do
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "invited_by_id", null: false
+    t.bigint "invited_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invited_by_id"], name: "index_invitations_on_invited_by_id"
+    t.index ["invited_id"], name: "index_invitations_on_invited_id"
   end
 
   create_table "task_categories", force: :cascade do |t|
